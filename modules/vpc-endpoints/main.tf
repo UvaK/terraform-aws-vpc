@@ -9,7 +9,7 @@ locals {
 }
 
 data "aws_vpc_endpoint_service" "this" {
-  for_each = { for k, v in local.endpoints : k => v if lookup(v, "service_endpoint", "") != ""}
+  for_each = { for k, v in local.endpoints : k => v if lookup(v, "service_endpoint", "") == ""}
 
   service         = try(each.value.service, null)
   service_name    = try(each.value.service_name, null)
